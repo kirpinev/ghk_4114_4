@@ -21,7 +21,7 @@ import { appSt } from "./style.css";
 import { ThxLayout } from "./thx/ThxLayout";
 import { Gap } from "@alfalab/core-components/gap";
 import { Notification } from "@alfalab/core-components/notification";
-import {sendDataToGA} from "./utils/events.ts";
+import { sendDataToGA } from "./utils/events.ts";
 
 interface Product {
   title: string;
@@ -95,7 +95,7 @@ const categories: Array<Categories> = [
         text: "Какой-то текст",
       },
       {
-        title: "+1% годовых по накопительному счёту",
+        title: "+3% годовых по накопительному счёту",
         text: "Какой-то текст",
         image: percent,
         name: "percent",
@@ -104,7 +104,7 @@ const categories: Array<Categories> = [
       {
         title: "Бесплатное снятие наличных",
         standard: "до 200 000 ₽",
-        premium: "Безлимит",
+        premium: "до 200 000 ₽",
         image: cash,
         name: "free_cash",
         type: "standard",
@@ -214,11 +214,11 @@ export const App = () => {
             block
             view={type === "lite" ? "primary" : "secondary"}
             onClick={() => {
-              setType("lite")
-              setPlanName("Старт 199 ₽/мес.")
+              setType("lite");
+              setPlanName("Старт 199 ₽/мес.");
             }}
             size="xs"
-            style={{ padding: "0.5rem" }}
+            style={{ padding: "0.5rem", width: "fit-content" }}
           >
             <span style={{ marginBottom: "1rem", display: "block" }}>
               Старт
@@ -229,13 +229,14 @@ export const App = () => {
             block
             view={type === "standard" ? "primary" : "secondary"}
             onClick={() => {
-              setType("standard")
-              setPlanName("Стандарт 399 ₽/мес.")
+              setType("standard");
+              setPlanName("Стандарт 399 ₽/мес.");
             }}
             size="xs"
             style={{
               padding: "0.5rem",
               opacity: "1",
+              width: "fit-content",
             }}
           >
             <span style={{ marginBottom: "1rem", display: "block" }}>
@@ -247,13 +248,14 @@ export const App = () => {
             block
             view={type === "premium" ? "primary" : "secondary"}
             onClick={() => {
-              setType("premium")
-              setPlanName("Плюс 999 ₽/мес.")
+              setType("premium");
+              setPlanName("Плюс 999 ₽/мес.");
             }}
             size="xs"
             style={{
               padding: "0.5rem",
               opacity: "1",
+              width: "fit-content",
             }}
           >
             <span style={{ marginBottom: "1rem", display: "block" }}>Плюс</span>
@@ -384,18 +386,21 @@ export const App = () => {
                           type === "premium" &&
                           product.standard && (
                             <div style={{ display: "flex" }}>
-                              <Typography.Text
-                                view="secondary-large"
-                                tag="p"
-                                color="secondary"
-                                className={appSt.productText}
-                                style={{
-                                  textDecoration: "line-through",
-                                  marginRight: "0.5rem",
-                                }}
-                              >
-                                {product.standard}
-                              </Typography.Text>
+                              {product.title !==
+                                "Бесплатное снятие наличных" && (
+                                <Typography.Text
+                                  view="secondary-large"
+                                  tag="p"
+                                  color="secondary"
+                                  className={appSt.productText}
+                                  style={{
+                                    textDecoration: "line-through",
+                                    marginRight: "0.5rem",
+                                  }}
+                                >
+                                  {product.standard}
+                                </Typography.Text>
+                              )}
                               <Typography.Text
                                 view="primary-medium"
                                 tag="p"
