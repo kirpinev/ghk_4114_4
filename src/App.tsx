@@ -151,7 +151,7 @@ const categories: Array<Categories> = [
 export const App = () => {
   const [loading, setLoading] = useState(false);
   const [thxShow, setThx] = useState(LS.getItem(LSKeys.ShowThx, false));
-  const [type, setType] = useState<Type>("lite");
+  const [type, setType] = useState<Type>("standard");
   const [planName, setPlanName] = useState<string>("Старт 199 ₽/мес.");
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -277,7 +277,7 @@ export const App = () => {
                 {category.title}
               </Typography.TitleResponsive>
               {category.products.map((product) => (
-                <>
+                <React.Fragment key={product.title}>
                   <div
                     key={product.title}
                     style={{ position: "relative" }}
@@ -432,7 +432,7 @@ export const App = () => {
                       />
                     </div>
                   </div>
-                </>
+                </React.Fragment>
               ))}
             </React.Fragment>
           ))}
